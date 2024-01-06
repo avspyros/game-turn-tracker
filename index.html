@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Game Turn Tracker</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Game Turn Tracker</h1>
+
+      <div class="form-container">
+        <form id="input-form">
+          <input id="input-text" class="input-field input-text" type="text" placeholder="name" autocomplete="off" />
+          <input id="input-number" class="input-field input-number" type="number" placeholder="roll" />
+          <button id="add-inputs" class="btn add-btn">+</button>
+        </form>
+        <button id="clear-entries" class="btn clr-btn">X</button>
+      </div>
+
+      <button id="next-actor" class="btn next-btn">NEXT =></button>
+
+      <table class="actors-list">
+        <thead>
+          <tr>
+            <th>Roll</th>
+            <th>Actor</th>
+          </tr>
+        </thead>
+        <tbody id="actors-list">
+          <!-- Dynamic Rows and Table Data -->
+        </tbody>
+      </table>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

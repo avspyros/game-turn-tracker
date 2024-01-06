@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css?family=Walter+Turncoat');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  max-height: 100vh;
+  background-color: #edd5b1;
+  font-family: 'Walter Turncoat', cursive;
+}
+
+input,
+button {
+  font: inherit;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px #edd5b1 inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin: 0 auto 2rem auto;
+}
+
+form {
+  position: relative;
+  margin-top: 1rem;
+}
+
+button {
+  font-family: inherit;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+}
+
+thead {
+  font-size: 1.4rem;
+}
+
+thead tr {
+  height: 50px;
+}
+
+tbody tr {
+  height: 50px;
+}
+
+tbody td {
+  font-size: 1.25rem;
+}
+
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.form-container {
+  display: flex;
+  align-items: baseline;
+}
+
+.input-field {
+  background-color: #edd5b1;
+  font-family: inherit;
+  font-size: 1.2rem;
+  margin-right: 1rem;
+  border: none;
+  border-bottom: 2px solid;
+  outline: none;
+}
+
+.input-text {
+  min-width: 30%;
+  max-width: 40%;
+}
+
+.input-number {
+  max-width: 15%;
+  text-align: center;
+}
+
+.btn {
+  display: inline-block;
+  width: 2rem;
+  font-size: 120%;
+  font-weight: bold;
+  background-color: transparent;
+  border: 2px solid #141414;
+}
+
+.add-btn {
+  width: 3rem;
+}
+
+.clr-btn {
+  border: 2px dashed;
+}
+
+.next-btn {
+  margin: 1.5rem auto;
+  padding: 0.5rem 0;
+  width: 100%;
+}
+
+.del-btn {
+  padding: 0;
+  font-weight: 500;
+  border: 1px solid grey;
+}
+
+.actors-list {
+  clear: both;
+  max-width: 425px;
+}
+
+.del-btn-cell {
+  text-align: right;
+}
+
+.active {
+  background-color: rgba(63, 128, 67, 0.4);
+  transition: background-color 0.5s;
+}
+
+/* Add Tooltips... */
