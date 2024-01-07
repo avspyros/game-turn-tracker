@@ -1,15 +1,14 @@
-window.addEventListener('load', displayActors());
+window.addEventListener('load', displayActors);
 
 const inputForm = document.getElementById('input-form');
 const nextBtn = document.getElementById('next-actor');
 const clearBtn = document.getElementById('clear-entries');
-const { nextItem } = highlightCurrent();
 
 inputForm.addEventListener('submit', addActor);
 
-nextBtn.addEventListener('click', () => nextItem());
+document.getElementById('next-actor').addEventListener('click', setNextActorActive);
 
-clearBtn.addEventListener('click', clearActors);
+document.getElementById('clear-entries').addEventListener('click', clearActors);
 
 function addActor(e) {
   e.preventDefault();
@@ -50,41 +49,42 @@ function displayActors() {
   let actors = JSON.parse(localStorage.getItem('actors'));
   const actorsList = document.getElementById('actors-list');
 
-  if (localStorage.getItem('actors') !== null) {
-    actorsList.innerHTML = '';
-    for (let i = 0; i < actors.length; i++) {
-      let name = actors[i].name;
-      let value = actors[i].value;
+  if (actors && actorsList) {
+    if (localStorage.getItem('actors') !== null) {
+      actorsList.innerHTML = '';
+      for (let i = 0; i < actors.length; i++) {
+        let name = actors[i].name;
+        let value = actors[i].value;
+        let isActive = actors[i].currentTurn ? 'active' : '';
 
-      actorsList.innerHTML += `<tr class="table-row">
+        actorsList.innerHTML += `<tr class="table-row">
         <td>${value}</td>
-        <td>${name}</td>
+        <td class="${isActive}">${name}</td>
         <td class="del-btn-cell"><button onclick="deleteActor(${value})" class="btn del-btn">X</button></td>
       </tr>`;
+      }
     }
   }
 }
 
-function highlightCurrent() {
-  const activeActors = document.querySelectorAll('#actors-list tr td:nth-child(2)');
-  let currentItem = -1;
+function setNextActorActive() {
+  let actors = JSON.parse(localStorage.getItem('actors')) || [];
 
-  function clearPrevious() {
-    for (let i = 0; i < activeActors.length; i++) {
-      activeActors[i].classList.remove('active');
-    }
-  }
+  const activeIndex = actors.findIndex(actor => actor.currentTurn);
 
-  function nextItem() {
-    if (currentItem === activeActors.length - 1) {
-      currentItem = -1;
-    }
-    clearPrevious();
-    activeActors[currentItem + 1].classList.add('active');
-    currentItem++;
-  }
+  // Remove active class from all actors
+  actors.forEach(actor => (actor.currentTurn = false));
 
-  return { nextItem };
+  // Determine the index of the next actor
+  const nextIndex = (activeIndex + 1) % actors.length;
+
+  // Add active class to the next actor
+  actors[nextIndex].currentTurn = true;
+
+  localStorage.setItem('actors', JSON.stringify(actors));
+
+  // Update the display
+  displayActors();
 }
 
 function deleteActor(value) {
@@ -103,9 +103,9 @@ function deleteActor(value) {
 
 function clearActors() {
   let actors = JSON.parse(localStorage.getItem('actors'));
-
-  if (actors.length > 0) {
-    if (confirm('Are you sure you want to clear the list?')) {
+  if (actors) {
+    const userResponse = confirm('Are you sure you want to clear the list?');
+    if (userResponse) {
       localStorage.clear();
       location.reload();
     } else {
