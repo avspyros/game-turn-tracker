@@ -57,19 +57,19 @@ th {
 }
 
 thead {
-  font-size: 1.4rem;
+  font-size: 1.25rem;
 }
 
 thead tr {
-  height: 50px;
+  height: 2rem;
 }
 
 tbody tr {
-  height: 50px;
+  height: 2rem;
 }
 
 tbody td {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
 }
 
 .container {
@@ -125,8 +125,8 @@ tbody td {
 }
 
 .next-btn {
-  margin: 1.5rem auto;
-  padding: 0.5rem 0;
+  margin: 1.5rem auto 1rem auto;
+  padding: 0.25rem 0;
   width: 100%;
 }
 
@@ -152,7 +152,7 @@ tbody td {
 
 /* Tooltips */
 
-[data-tooltip] {
+/* [data-tooltip] {
   cursor: pointer;
   position: relative;
 }
@@ -194,8 +194,6 @@ tbody td {
   opacity: 1;
 }
 
-/* Top tooltip  */
-
 [data-tooltip].t-top::before {
   bottom: 100%;
   left: 50%;
@@ -214,4 +212,4 @@ tbody td {
 [data-tooltip].t-top:hover::before,
 [data-tooltip].t-top:hover::after {
   transform: translateX(-50%) translateY(-2px);
-}
+} */
