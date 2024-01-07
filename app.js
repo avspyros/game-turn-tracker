@@ -75,11 +75,13 @@ function setNextActorActive() {
   // Remove active class from all actors
   actors.forEach(actor => (actor.currentTurn = false));
 
-  // Determine the index of the next actor
-  const nextIndex = (activeIndex + 1) % actors.length;
+  if (actors.length > 0) {
+    // Determine the index of the next actor
+    const nextIndex = (activeIndex + 1) % actors.length;
 
-  // Add active class to the next actor
-  actors[nextIndex].currentTurn = true;
+    // Add active class to the next actor
+    actors[nextIndex].currentTurn = true;
+  }
 
   localStorage.setItem('actors', JSON.stringify(actors));
 
