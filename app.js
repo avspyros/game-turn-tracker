@@ -1,16 +1,21 @@
 window.addEventListener('load', displayActors());
 
 const inputForm = document.getElementById('input-form');
-const inputText = document.getElementById('input-text');
+const nextBtn = document.getElementById('next-actor');
+const clearBtn = document.getElementById('clear-entries');
+const { nextItem } = highlightCurrent();
 
 inputForm.addEventListener('submit', addActor);
 
-document.getElementById('clear-entries').addEventListener('click', clearActors);
+nextBtn.addEventListener('click', () => nextItem());
+
+clearBtn.addEventListener('click', clearActors);
 
 function addActor(e) {
   e.preventDefault();
-  let nameInput = document.getElementById('input-text').value.toLowerCase();
-  let numberInput = document.getElementById('input-number').value;
+  const nameInput = document.getElementById('input-text').value.toLowerCase();
+  const numberInput = document.getElementById('input-number').value;
+  const inputText = document.getElementById('input-text');
 
   if (!nameInput || !numberInput) {
     alert('Please fill in both name and number!');
@@ -60,11 +65,9 @@ function displayActors() {
   }
 }
 
-// Highlight current actor
 function highlightCurrent() {
-  let activeActors = document.querySelectorAll('#actors-list tr td:nth-child(2)'),
-    nextBtn = document.getElementById('next-actor'),
-    currentItem = -1;
+  const activeActors = document.querySelectorAll('#actors-list tr td:nth-child(2)');
+  let currentItem = -1;
 
   function clearPrevious() {
     for (let i = 0; i < activeActors.length; i++) {
@@ -73,20 +76,16 @@ function highlightCurrent() {
   }
 
   function nextItem() {
+    if (currentItem === activeActors.length - 1) {
+      currentItem = -1;
+    }
     clearPrevious();
     activeActors[currentItem + 1].classList.add('active');
     currentItem++;
   }
 
-  nextBtn.addEventListener('click', () => {
-    if (currentItem === activeActors.length - 1) {
-      currentItem = -1;
-    }
-    nextItem();
-  });
+  return { nextItem };
 }
-
-highlightCurrent();
 
 function deleteActor(value) {
   let actors = JSON.parse(localStorage.getItem('actors'));
