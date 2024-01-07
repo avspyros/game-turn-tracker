@@ -97,8 +97,13 @@ function deleteActor(value) {
 }
 
 function clearActors() {
-  localStorage.clear();
-  location.reload();
+  const userResponse = confirm('Arou you sure you want to clear the list?');
+  if (userResponse) {
+    localStorage.clear();
+    location.reload();
+  } else {
+    return;
+  }
 }
 
 // Add feature to count rounds...
