@@ -58,9 +58,10 @@ function displayActors() {
       </tr>`;
     }
   }
+}
 
-  // Highlight current actor
-
+// Highlight current actor
+function highlightCurrent() {
   let activeActors = document.querySelectorAll('#actors-list tr td:nth-child(2)'),
     nextBtn = document.getElementById('next-actor'),
     currentItem = -1;
@@ -85,24 +86,32 @@ function displayActors() {
   });
 }
 
+highlightCurrent();
+
 function deleteActor(value) {
   let actors = JSON.parse(localStorage.getItem('actors'));
+
   for (let i = 0; i < actors.length; i++) {
     if (actors[i].value == value) {
       actors.splice(i, 1);
     }
   }
+
   localStorage.setItem('actors', JSON.stringify(actors));
+
   displayActors();
 }
 
 function clearActors() {
-  const userResponse = confirm('Arou you sure you want to clear the list?');
-  if (userResponse) {
-    localStorage.clear();
-    location.reload();
-  } else {
-    return;
+  let actors = JSON.parse(localStorage.getItem('actors'));
+
+  if (actors.length > 0) {
+    if (confirm('Are you sure you want to clear the list?')) {
+      localStorage.clear();
+      location.reload();
+    } else {
+      return;
+    }
   }
 }
 
