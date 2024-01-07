@@ -1,9 +1,11 @@
-window.addEventListener('load', displayActors());
+window.addEventListener('load', displayActors);
 
 const inputForm = document.getElementById('input-form');
 const inputText = document.getElementById('input-text');
 
 inputForm.addEventListener('submit', addActor);
+
+document.getElementById('next-actor').addEventListener('click', setNextActorActive);
 
 document.getElementById('clear-entries').addEventListener('click', clearActors);
 
@@ -45,44 +47,42 @@ function displayActors() {
   let actors = JSON.parse(localStorage.getItem('actors'));
   const actorsList = document.getElementById('actors-list');
 
-  if (localStorage.getItem('actors') !== null) {
-    actorsList.innerHTML = '';
-    for (let i = 0; i < actors.length; i++) {
-      let name = actors[i].name;
-      let value = actors[i].value;
+  if (actors && actorsList) {
+    if (localStorage.getItem('actors') !== null) {
+      actorsList.innerHTML = '';
+      for (let i = 0; i < actors.length; i++) {
+        let name = actors[i].name;
+        let value = actors[i].value;
+        let isActive = actors[i].currentTurn ? 'active' : '';
 
-      actorsList.innerHTML += `<tr class="table-row">
+        actorsList.innerHTML += `<tr class="table-row">
         <td>${value}</td>
-        <td>${name}</td>
+        <td class="${isActive}">${name}</td>
         <td class="del-btn-cell"><button onclick="deleteActor(${value})" class="btn del-btn">X</button></td>
       </tr>`;
+      }
     }
   }
+}
 
-  // Highlight current actor
+function setNextActorActive() {
+  let actors = JSON.parse(localStorage.getItem('actors')) || [];
 
-  let activeActors = document.querySelectorAll('#actors-list tr td:nth-child(2)'),
-    nextBtn = document.getElementById('next-actor'),
-    currentItem = -1;
+  const activeIndex = actors.findIndex(actor => actor.currentTurn);
 
-  function clearPrevious() {
-    for (let i = 0; i < activeActors.length; i++) {
-      activeActors[i].classList.remove('active');
-    }
-  }
+  // Remove active class from all actors
+  actors.forEach(actor => (actor.currentTurn = false));
 
-  function nextItem() {
-    clearPrevious();
-    activeActors[currentItem + 1].classList.add('active');
-    currentItem++;
-  }
+  // Determine the index of the next actor
+  const nextIndex = (activeIndex + 1) % actors.length;
 
-  nextBtn.addEventListener('click', () => {
-    if (currentItem === activeActors.length - 1) {
-      currentItem = -1;
-    }
-    nextItem();
-  });
+  // Add active class to the next actor
+  actors[nextIndex].currentTurn = true;
+
+  localStorage.setItem('actors', JSON.stringify(actors));
+
+  // Update the display
+  displayActors();
 }
 
 function deleteActor(value) {
@@ -97,12 +97,15 @@ function deleteActor(value) {
 }
 
 function clearActors() {
-  const userResponse = confirm('Arou you sure you want to clear the list?');
-  if (userResponse) {
-    localStorage.clear();
-    location.reload();
-  } else {
-    return;
+  let actors = JSON.parse(localStorage.getItem('actors'));
+  if (actors) {
+    const userResponse = confirm('Are you sure you want to clear the list?');
+    if (userResponse) {
+      localStorage.clear();
+      location.reload();
+    } else {
+      return;
+    }
   }
 }
 
