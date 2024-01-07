@@ -1,5 +1,3 @@
-# TTRPG-initiative-tracker
-
 A simple tool for RPG and board games.
 
 Add an Actor (character, creature etc.) entry by typing the actor's name and the value of the dice they rolled. If their
