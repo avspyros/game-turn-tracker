@@ -32,7 +32,7 @@ input:-webkit-autofill:focus {
 }
 
 h1 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin: 0 auto 1.5rem auto;
 }
 
@@ -57,7 +57,7 @@ th {
 }
 
 thead {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
 }
 
 thead tr {
@@ -75,7 +75,7 @@ tbody td {
 .container {
   max-width: 580px;
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  padding: 1rem;
 }
 
 .form-container form {
@@ -87,7 +87,7 @@ tbody td {
 .input-field {
   background-color: #edd5b1;
   font-family: inherit;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-right: 1rem;
   border: none;
   border-bottom: 2px solid;
@@ -104,8 +104,17 @@ tbody td {
   text-align: center;
 }
 
+.input-group {
+  flex: 3;
+}
+
+.counter-container {
+  text-align: right;
+  flex: 1;
+}
+
 .counter-container p {
-  font-size: 1.125rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 
@@ -126,7 +135,7 @@ tbody td {
 }
 
 .add-btn {
-  padding: 0.25rem;
+  padding: 0.125rem;
   width: 3rem;
 }
 
