@@ -1,8 +1,10 @@
 window.addEventListener('load', displayActors);
+window.addEventListener('load', initializeRoundCounter);
 
 const inputForm = document.getElementById('input-form');
 const nextBtn = document.getElementById('next-actor');
 const clearBtn = document.getElementById('clear-entries');
+const counter = document.getElementById('round-num');
 
 inputForm.addEventListener('submit', addActor);
 
@@ -81,6 +83,11 @@ function setNextActorActive() {
 
     // Add active class to the next actor
     actors[nextIndex].currentTurn = true;
+
+    // Update the round counter if the next actor is the first element
+    if (nextIndex === 0) {
+      roundCounter();
+    }
   }
 
   localStorage.setItem('actors', JSON.stringify(actors));
@@ -105,7 +112,7 @@ function deleteActor(value) {
 
 function clearActors() {
   let actors = JSON.parse(localStorage.getItem('actors'));
-  if (actors) {
+  if (actors.length > 0) {
     const userResponse = confirm('Are you sure you want to clear the list?');
     if (userResponse) {
       localStorage.clear();
@@ -116,4 +123,23 @@ function clearActors() {
   }
 }
 
-// Add feature to count rounds...
+function roundCounter() {
+  // Increment the round counter and update the display
+  let currentRound = parseInt(counter.innerText) || 0;
+  currentRound++;
+  counter.innerText = currentRound;
+
+  localStorage.setItem('roundCounter', currentRound);
+}
+
+function initializeRoundCounter() {
+  const savedRoundCounter = localStorage.getItem('roundCounter');
+
+  if (savedRoundCounter !== null) {
+    counter.innerText = savedRoundCounter;
+  } else {
+    // Set the default round counter to 0 if it is not present in local storage
+    counter.innerText = '0';
+    localStorage.setItem('roundCounter', '0');
+  }
+}

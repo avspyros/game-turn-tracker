@@ -14,15 +14,21 @@
 
       <div class="form-container">
         <form id="input-form">
-          <input id="input-text" class="input-field input-text" type="text" placeholder="name" autocomplete="off" />
-          <input id="input-number" class="input-field input-number" type="number" placeholder="roll" />
-          <button id="add-inputs" class="btn add-btn">+</button>
+          <div class="input-group">
+            <input id="input-text" class="input-field input-text" type="text" placeholder="name" autocomplete="off" />
+            <input id="input-number" class="input-field input-number" type="number" placeholder="roll" />
+            <button id="add-inputs" class="btn add-btn">+</button>
+          </div>
+          <div class="counter-container">
+            <p>Round: <span id="round-num"></span></p>
+          </div>
         </form>
-
-        <button id="clear-entries" class="btn clr-btn t-top" data-tooltip="clear all">Clear</button>
       </div>
 
-      <button id="next-actor" class="btn next-btn">NEXT =></button>
+      <div class="btn-group">
+        <button id="next-actor" class="btn next-btn">NEXT =></button>
+        <button id="clear-entries" class="btn clr-btn t-top" data-tooltip="clear all">Clear</button>
+      </div>
 
       <table class="actors-list">
         <thead>
