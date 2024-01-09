@@ -95,7 +95,7 @@ tr > td:nth-child(3) {
 input {
   background-color: inherit;
   font-family: inherit;
-  font-size: 0.9rem;
+  font-size: 1rem;
   border: none;
   border-bottom: 2px solid;
   outline: none;
@@ -111,6 +111,10 @@ input:nth-child(1) {
 input:nth-child(2) {
   width: 20%;
   min-width: 40px;
+}
+
+input::placeholder {
+  font-size: 0.95rem;
 }
 
 .input-group {
@@ -145,6 +149,13 @@ input:nth-child(2) {
   font-weight: bold;
   background-color: transparent;
   border: 2px solid #141414;
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px #2e2e2e;
+  transition: box-shadow 0.5s ease;
+}
+
+.btn:active {
+  box-shadow: none;
 }
 
 .add-btn {
