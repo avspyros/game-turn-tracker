@@ -59,11 +59,12 @@ function displayActors() {
         let value = actors[i].value;
         let isActive = actors[i].currentTurn ? 'active' : '';
 
-        actorsList.innerHTML += `<tr class="table-row">
-        <td>${value}</td>
-        <td class="${isActive}">${name}</td>
-        <td class="del-btn-cell"><button onclick="deleteActor(${value})" class="btn del-btn">X</button></td>
-      </tr>`;
+        actorsList.innerHTML += `<tr>
+          <td>${value}</td>
+          <td class="${isActive}">${name}</td>
+          <td><button onclick="deleteActor(${value})" class="btn del-btn">X</button></td>
+        </tr>
+        `;
       }
     }
   }
@@ -143,3 +144,10 @@ function initializeRoundCounter() {
     localStorage.setItem('roundCounter', '0');
   }
 }
+
+// Year update
+
+const currentDate = new Date();
+const currentYear = currentDate.getFullYear();
+
+document.getElementById('year').innerHTML = `${currentYear}`;
