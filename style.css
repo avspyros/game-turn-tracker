@@ -52,12 +52,20 @@ thead {
   font-size: 1.125rem;
 }
 
+thead > tr {
+  height: 3rem;
+}
+
 tr {
-  height: 2rem;
+  height: 2.25rem;
 }
 
 th {
   text-align: left;
+}
+
+th:nth-child(3) {
+  text-align: right;
 }
 
 tr > td:first-child {
@@ -168,7 +176,7 @@ input::placeholder {
   flex: 3 1 auto;
 }
 
-.clr-btn {
+.res-btn {
   padding: 0.25rem;
   border: 2px dashed;
   flex: 1 1 auto;
@@ -176,8 +184,12 @@ input::placeholder {
 
 .del-btn {
   padding: 0;
-  font-weight: 500;
   border: 1px solid rgb(151, 49, 49);
+}
+
+.clr-btn {
+  padding: 0;
+  border: 2px solid rgb(151, 49, 49);
 }
 
 .actors-list {

@@ -14,7 +14,7 @@ document.getElementById('clear-entries').addEventListener('click', clearActors);
 
 function addActor(e) {
   e.preventDefault();
-  const nameInput = document.getElementById('input-text').value.toLowerCase();
+  const nameInput = document.getElementById('input-text').value.trim();
   const numberInput = document.getElementById('input-number').value;
   const inputText = document.getElementById('input-text');
 
