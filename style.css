@@ -140,7 +140,8 @@ input::placeholder {
 }
 
 .counter-container span {
-  font-size: 1rem;
+  color: rgb(63, 128, 67);
+  font-size: 1.115rem;
 }
 
 .btn-group {
@@ -153,7 +154,6 @@ input::placeholder {
 
 .btn {
   display: inline-block;
-  width: 2rem;
   font-weight: bold;
   background-color: transparent;
   border: 2px solid #141414;
@@ -182,14 +182,16 @@ input::placeholder {
   flex: 1 1 auto;
 }
 
-.del-btn {
-  padding: 0;
-  border: 1px solid rgb(151, 49, 49);
+.clr-btn {
+  font-size: 0.9rem;
+  padding: 0 0.5rem;
+  border: 2px solid rgb(151, 49, 49);
 }
 
-.clr-btn {
+.del-btn {
+  width: 2rem;
   padding: 0;
-  border: 2px solid rgb(151, 49, 49);
+  border: 1px solid rgb(151, 49, 49);
 }
 
 .actors-list {
