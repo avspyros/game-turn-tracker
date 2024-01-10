@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Walter+Turncoat');
 
+:root {
+  --bg: #edd5b1;
+  --element: #141414;
+  --muted: #2e2e2e;
+  --highlight: rgba(63, 128, 67, 0.4);
+  --accent-1: rgb(63, 128, 67);
+  --accent-2: rgb(151, 49, 49);
+}
+
 *,
 *::before,
 *::after {
@@ -26,7 +35,7 @@ button {
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
-  -webkit-box-shadow: 0 0 0px 1000px #edd5b1 inset;
+  -webkit-box-shadow: 0 0 0px 1000px var(--bg) inset;
   transition: background-color 5000s ease-in-out 0s;
 }
 
@@ -80,7 +89,7 @@ tr > td:nth-child(3) {
 }
 
 .wrapper {
-  background-color: #edd5b1;
+  background-color: var(--bg);
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -139,7 +148,7 @@ input::placeholder {
 }
 
 .counter-container span {
-  color: rgb(63, 128, 67);
+  color: var(--accent-1);
   font-size: 1.115rem;
 }
 
@@ -155,9 +164,9 @@ input::placeholder {
   display: inline-block;
   font-weight: bold;
   background-color: transparent;
-  border: 2px solid #141414;
+  border: 2px solid var(--element);
   border-radius: 3px;
-  box-shadow: 2px 2px 2px #2e2e2e;
+  box-shadow: 2px 2px 2px var(--muted);
   transition: box-shadow 0.5s ease;
 }
 
@@ -184,13 +193,13 @@ input::placeholder {
 .clr-btn {
   font-size: 0.9rem;
   padding: 0 0.5rem;
-  border: 2px solid rgb(151, 49, 49);
+  border: 2px solid var(--accent-2);
 }
 
 .del-btn {
   width: 2rem;
   padding: 0;
-  border: 1px solid rgb(151, 49, 49);
+  border: 1px solid var(--accent-2);
 }
 
 .actors-list {
@@ -204,17 +213,17 @@ input::placeholder {
 }
 
 .active {
-  background-color: rgba(63, 128, 67, 0.4);
+  background-color: var(--highlight);
   transition: background-color 0.5s;
 }
 
 .footer {
   width: 100%;
-  border-top: 1px solid #141414;
+  border-top: 1px solid var(--element);
   text-align: center;
   padding: 0.5rem 1rem;
 }
 
 .footer p a {
-  color: #141414;
+  color: var(--element);
 }
