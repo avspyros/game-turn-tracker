@@ -1,16 +1,21 @@
 window.addEventListener('load', displayActors);
-window.addEventListener('load', initializeRoundCounter);
+window.addEventListener('load', initializeCounter);
+
+// Year update
+const currentDate = new Date();
+const currentYear = currentDate.getFullYear();
+document.getElementById('year').innerHTML = `${currentYear}`;
 
 const inputForm = document.getElementById('input-form');
 const nextBtn = document.getElementById('next-actor');
-const clearBtn = document.getElementById('clear-entries');
+const resetBtn = document.getElementById('clear-entries');
+const clearBtn = document.getElementById('clear-actors');
 const counter = document.getElementById('round-num');
 
 inputForm.addEventListener('submit', addActor);
-
-document.getElementById('next-actor').addEventListener('click', setNextActorActive);
-
-document.getElementById('clear-entries').addEventListener('click', clearActors);
+nextBtn.addEventListener('click', setNextActorActive);
+resetBtn.addEventListener('click', resetCounter);
+clearBtn.addEventListener('click', clearActors);
 
 function addActor(e) {
   e.preventDefault();
@@ -87,13 +92,12 @@ function setNextActorActive() {
 
     // Update the round counter if the next actor is the first element
     if (nextIndex === 0) {
-      roundCounter();
+      updateCounter();
     }
   }
 
   localStorage.setItem('actors', JSON.stringify(actors));
 
-  // Update the display
   displayActors();
 }
 
@@ -116,7 +120,8 @@ function clearActors() {
   if (actors.length > 0) {
     const userResponse = confirm('Are you sure you want to clear the list?');
     if (userResponse) {
-      localStorage.clear();
+      let actors = [];
+      localStorage.setItem('actors', JSON.stringify(actors));
       location.reload();
     } else {
       return;
@@ -124,16 +129,7 @@ function clearActors() {
   }
 }
 
-function roundCounter() {
-  // Increment the round counter and update the display
-  let currentRound = parseInt(counter.innerText) || 0;
-  currentRound++;
-  counter.innerText = currentRound;
-
-  localStorage.setItem('roundCounter', currentRound);
-}
-
-function initializeRoundCounter() {
+function initializeCounter() {
   const savedRoundCounter = localStorage.getItem('roundCounter');
 
   if (savedRoundCounter !== null) {
@@ -145,9 +141,20 @@ function initializeRoundCounter() {
   }
 }
 
-// Year update
+function updateCounter() {
+  // Increment the round counter and update the display
+  let currentRound = parseInt(counter.innerText) || 0;
+  currentRound++;
+  counter.innerText = currentRound;
 
-const currentDate = new Date();
-const currentYear = currentDate.getFullYear();
+  localStorage.setItem('roundCounter', currentRound);
+}
 
-document.getElementById('year').innerHTML = `${currentYear}`;
+function resetCounter() {
+  const savedRoundCounter = localStorage.getItem('roundCounter');
+
+  if (savedRoundCounter !== null) {
+    counter.innerText = '0';
+    localStorage.setItem('roundCounter', '0');
+  }
+}
