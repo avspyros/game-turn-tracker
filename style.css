@@ -44,7 +44,6 @@ h1 {
 }
 
 table {
-  width: 100%;
   font-size: 1.1rem;
 }
 
@@ -195,8 +194,13 @@ input::placeholder {
 }
 
 .actors-list {
-  clear: both;
-  max-width: 425px;
+  width: 100%;
+}
+
+@media (min-width: 500px) {
+  .actors-list {
+    width: 425px;
+  }
 }
 
 .active {
