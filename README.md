@@ -1,8 +1,8 @@
-A simple tool for RPG and board games.
+A simple tool for RPG and Board Games.
 
-Add an Actor (character, creature etc.) entry by typing the actor's name and the value of the dice they rolled. If their
-turn does not depend on dice rolls just enter numbers representing their turn.
+Add an Actor (character, creature etc.) entry by typing the actor's name and the value of the dice they rolled.
 
-Use the "Next" button to highlight the current Actor's turn during the game round.
+If their turn does not depend on dice rolls just enter numbers representing their turn. Bigger number goes first.
 
-Clear all values with upper right X button.
+Use the "Next" button to highlight the current Actor's turn during the game round. After all Actors had their turn,
+counter moves to the next round.
